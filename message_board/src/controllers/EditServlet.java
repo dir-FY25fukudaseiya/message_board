@@ -23,6 +23,9 @@ var m = em.find(Message.class, Integer.parseInt(request.getParameter("id")));
 request.setAttribute("message", m);
  request.setAttribute("_token", request.getSession().getId());
  // メッセージのIDをセッションスコープに登録
+ if(m != null) {
+     request.getSession().setAttribute("message_id", m.getId());
+ }
 request.getSession().setAttribute("message_id", m.getId());
  var rd = request.getRequestDispatcher("/WEB-INF/views/messages/edit.jsp");
  rd.forward(request, response);
